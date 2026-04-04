@@ -6,8 +6,7 @@ export function ProfileLayout() {
       <h2>Profile</h2>
 
       <nav>
-        <Link to=".">Trees</Link> |{" "}
-        <Link to="settings">Settings</Link> |{" "}
+        <Link to=".">Trees</Link> | <Link to="settings">Settings</Link> |{" "}
         <Link to="certificates">Certificates</Link>
       </nav>
 
