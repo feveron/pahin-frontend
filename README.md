@@ -1,6 +1,10 @@
 # pahin-frontend
 Frontend частина платформи Pahin — застосунок для взаємодії користувачів із системою висадки дерев, перегляду даних та роботи з API.
 
+# Live Demo
+
+https://pahin-frontend.vercel.app/
+
 ## Tech Stack
 
 - React
@@ -20,7 +24,7 @@ Frontend частина платформи Pahin — застосунок для
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/pahin-frontend.git
+git clone https://github.com/feveron/pahin-frontend
 cd pahin-frontend
 ```
 
@@ -78,3 +82,8 @@ src/
 | `npm run preview` | Preview build             |
 | `npm run lint`    | Run ESLint                |
 | `npm run format`  | Format code with Prettier |
+
+## CI/CD
+
+- CI: GitHub Actions (lint + build)
+- CD: Vercel (automatic deploy on push to main)
