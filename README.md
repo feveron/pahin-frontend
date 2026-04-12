@@ -1,5 +1,4 @@
 # pahin-frontend
-![CI](https://github.com/your-username/pahin-frontend/actions/workflows/ci.yml/badge.svg)
 Frontend частина платформи Pahin — застосунок для взаємодії користувачів із системою висадки дерев, перегляду даних та роботи з API.
 
 ## Tech Stack
