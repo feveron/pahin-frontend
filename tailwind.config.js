@@ -23,7 +23,6 @@ export default {
           footer: "#1D1C12", //footer, колір тексту у світлій темі
         },
         brown: "#683C2A",
-        grey: "#404943",
       },
       fonts: {
         heading: ["Manrope", "sans-serif"],
