@@ -1,3 +1,5 @@
+import { act } from 'react';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -13,6 +15,7 @@ export default {
         cream: {
           DEFAULT: "#FEFAE8",
           input: "#F2EEDD", //inputs,
+          active: "#E6E3D2", //активний стан кнопки
           comment: "#ECE8D8", //коментар у формі, кнопка поділитись сертифікатом в соц.м.
           footer: "#F8F4E3", //footer, колір тексту у темній темі
         },
@@ -23,6 +26,9 @@ export default {
           footer: "#1D1C12", //footer, колір тексту у світлій темі
         },
         brown: "#683C2A",
+        input:{
+          text: "#707973",
+        }
       },
       fonts: {
         heading: ["Manrope", "sans-serif"],
