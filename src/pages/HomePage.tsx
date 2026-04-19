@@ -1,7 +1,16 @@
+import { Button } from "../components/Button/Button"
+import { MapButton } from "../components/MapButton"
 import { useThemeContext } from "../hooks/useTheme"
+import MapTreeIcon from "../assets/icons/map-tree.svg"
+import PersonIcon from "../assets/icons/person.svg"
+import { Input } from "../components/Input"
+import { useState } from "react"
 
 export function HomePage() {
   const { theme, toggleTheme } = useThemeContext()
+  const [name, setName] = useState("")
+  const [password, setPassword] = useState("")
+  
   return (
     <div className="min-h-screen bg-cream dark:bg-dark p-8 space-y-10 transition-colors duration-300">
       {/* Типографіка */}
@@ -65,18 +74,17 @@ export function HomePage() {
           Кнопки
         </h2>
         <div className="flex flex-wrap gap-3">
-          <button className="px-5 py-2 rounded-lg bg-green hover:bg-green-dark text-white font-body font-medium transition-colors">
-            Primary
-          </button>
-          <button className="px-5 py-2 rounded-lg bg-green-light text-green-dark font-body font-medium transition-colors hover:bg-green hover:text-white">
-            Secondary
-          </button>
-          <button className="px-5 py-2 rounded-lg border-2 border-green text-green font-body font-medium hover:bg-green hover:text-white transition-colors dark:border-green-light dark:text-green-light">
-            Outline
-          </button>
-          <button className="px-5 py-2 rounded-lg bg-brown text-white font-body font-medium hover:opacity-80 transition-opacity">
-            Accent
-          </button>
+          <Button label="Alpha" onClick={() => alert("Primary button clicked")} variant="alpha" />
+          <Button label="Beta" onClick={() => alert("Secondary button clicked")} variant="beta" />
+          <Button label="Gamma" onClick={() => alert("Outline button clicked")} variant="gamma" />
+          <Button label="Delta" onClick={() => alert("Accent button clicked")} variant="delta" />
+          <MapButton icon={MapTreeIcon} onClick={() => alert("Map button clicked")} />
+          <Button label="Filter Alpha" onClick={() => alert("Filter button clicked")} variant="filter_alpha" />
+          <Button label="Filter Beta" onClick={() => alert("Filter button clicked")} variant="filter_beta" />
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Input  label="Input Label" icon={PersonIcon} placeholder="Enter text..." value={name} onChange={setName} />
+          <Input type="password" label="Пароль" icon={PersonIcon} placeholder="Введіть пароль" value={password} onChange={setPassword} />
         </div>
       </section>
     </div>
