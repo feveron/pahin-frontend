@@ -9,9 +9,9 @@ interface LayoutProps {
 
 export function Layout({ noFooter = false }: LayoutProps) {
   return (
-    <div className="justify-center pt-16 items-center flex flex-col ">
+    <div className="justify-center items-center flex flex-col ">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow w-full">
         <Outlet />
       </main>
       {!noFooter && <Footer />}
