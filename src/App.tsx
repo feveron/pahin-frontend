@@ -10,18 +10,20 @@ import { MapPage } from "./pages/MapPage"
 
 function App() {
   return (
-    <Layout>
-      <Routes>
+    <Routes>
+      <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/map" element={<MapPage />} />
         <Route path="/profile" element={<ProfileLayout />}>
           <Route index element={<MyTreesPage />} />
           <Route path="certificates" element={<MyCertificatesPage />} />
           <Route path="settings" element={<ProfileSettingsPage />} />
         </Route>
-      </Routes>
-    </Layout>
+      </Route>
+      <Route element={<Layout noFooter />}>
+        <Route path="/map" element={<MapPage />} />
+      </Route>
+    </Routes>
   )
 }
 
