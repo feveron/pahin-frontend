@@ -54,7 +54,11 @@ export function Header() {
         {/* Права частина */}
         <div className="flex items-center gap-3">
           {/* Посадити дерево */}
-          <Button label="Посадити дерево" onClick={() => navigate("/plant")} variant="alpha" />
+          <Button
+            label="Посадити дерево"
+            onClick={() => navigate("/catalog")}
+            variant="alpha"
+          />
 
           {/* Перемикач теми */}
           <button
