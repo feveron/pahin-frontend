@@ -2,9 +2,9 @@
 import { useNavigate } from "react-router-dom"
 import { Leaf, MapPin, FileText } from "lucide-react"
 import { Button } from "../components/Button/Button"
-import plantImage from "../assets/images/plantMainPage.jpg"
+import plantImage from "../assets/images/hero-section.jpg"
 import { useEffect, useRef, useState } from "react"
-import bannerImage from "../assets/images/forestBanner.jpg"
+import bannerImage from "../assets/images/forest.jpg"
 
 function useCountUp(target: number, duration = 2000, start = false) {
   const [count, setCount] = useState(0)
@@ -84,7 +84,7 @@ export function HomePage() {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-col bg-cream dark:bg-dark ">
+    <div className="flex flex-col bg-cream dark:bg-dark pt-16 ">
       {/* ── Hero ── */}
       <section
         className="max-w-7xl mx-auto  relative w-full min-h-[600px] pt-16 md:min-h-[600px] flex items-end md:items-center bg-cover bg-center "
