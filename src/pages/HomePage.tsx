@@ -75,9 +75,9 @@ const steps = [
 ]
 
 const stats = [
-  { value: "124,582", label: "Дерев посаджено" },
-  { value: "45,900", label: "Активних волонтерів" },
-  { value: "82", label: "Міст охоплено" },
+  { value: "12,000", label: "Дерев посаджено" },
+  { value: "1,276", label: "Активних волонтерів" },
+  { value: "56", label: "Міст охоплено" },
 ]
 
 export function HomePage() {
@@ -168,8 +168,8 @@ export function HomePage() {
           >
             <div className="absolute inset-0 bg-cream/70 dark:bg-dark/80" />
 
-            <div className="relative z-10 flex flex-col items-center text-center gap-4">
-              <h2 className="text-4xl md:text-6xl font-bold text-dark-footer dark:text-cream leading-snug">
+            <div className="relative z-10 flex flex-col items-center text-center gap-6">
+              <h2 className="text-2xl md:text-6xl font-bold text-dark-footer dark:text-cream leading-snug">
                 Кожне дерево має історію.
                 <br />
                 Якою буде твоя?
@@ -178,7 +178,7 @@ export function HomePage() {
                 label="Створити свою спадщину"
                 variant="beta"
                 onClick={() => navigate("/catalog")}
-                className="!w-auto"
+                className="!w-auto "
               />
             </div>
           </div>

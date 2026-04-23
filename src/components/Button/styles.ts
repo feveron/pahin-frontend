@@ -1,7 +1,7 @@
 export const buttonVariants = {
   alpha:
     "px-4 py-[7px] w-full text-[14px] rounded-full dark:bg-green-light bg-green hover:bg-green-hover dark:hover:bg-green dark:hover:text-white text-white dark:text-black font-body font-bold transition-colors disabled:opacity-50",
-  beta: "px-10 py-4 w-full text-[18px] rounded-full bg-green dark:bg-green-light hover:bg-green-hover dark:hover:text-white dark:hover:bg-green text-white dark:text-black font-body font-semibold transition-colors disabled:opacity-50 ",
+  beta: "px-5 py-2 md:px-10 py-4 w-full text-[18px] rounded-full bg-green dark:bg-green-light hover:bg-green-hover dark:hover:text-white dark:hover:bg-green text-white dark:text-black font-body font-semibold transition-colors disabled:opacity-50 ",
   gamma:
     "box-border px-10 py-4 w-full rounded-full border-[3px] border-green text-green font-body  font-bold hover:bg-green dark:hover:bg-green-light hover:text-white  dark:hover:text-black  transition-colors dark:border-green-light dark:text-green-light",
   delta:
