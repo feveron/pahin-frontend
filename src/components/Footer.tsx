@@ -2,6 +2,7 @@
 import { Globe, Mail, Share2 } from "lucide-react"
 
 import Logo from "../assets/icons/logo.svg"
+import { Icon } from "./Icon"
 
 const resources = [
   {
@@ -26,11 +27,7 @@ export function Footer() {
         {/* Лого + опис */}
         <div className="flex  flex-col items-center md:items-start gap-4">
           <div className="flex items-center gap-2">
-            <img
-              src={Logo}
-              alt="Logo"
-              className="transition-transform duration-200 group-hover:scale-125"
-            />
+            <Icon src={Logo} size={24} className="text-green dark:text-green-hover" />
             <span className="font-bold text-lg text-green dark:text-green-hover">
               Pahin
             </span>

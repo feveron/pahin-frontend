@@ -9,8 +9,8 @@ type InputProps = {
     error?: string
 }
 
-export function Input({ icon, className, label, placeholder, type="text", value, onChange, error }: InputProps) {
-    
+export function Input({ icon, className, label, placeholder, type = "text", value, onChange, error }: InputProps) {
+
     return (
         <div className="flex w-full flex-col justify-center font-bold text-[12px] text-black/80 items-start gap-[6px]">
             {label && <label className="uppercase font-body text-sm text-gray-700 dark:text-gray-300">{label}</label>}

@@ -4,6 +4,7 @@ import Logo from "../assets/icons/logo.svg"
 import Sun from "../assets/icons/sun.svg"
 import Moon from "../assets/icons/moon.svg"
 import { CircleUserRound } from "lucide-react"
+import { Icon } from "./Icon"
 import { Button } from "./Button/Button"
 
 const navLinks = [
@@ -20,10 +21,9 @@ export function Header() {
   const isLoggedIn = false
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `font-body text-sm font-medium transition-colors ${
-      isActive
-        ? "text-green border-b-2 border-green dark:text-green-light dark:border-green-light"
-        : "text-brown hover:text-green dark:text-cream-footer dark:hover:text-green-light"
+    `font-body text-sm font-medium transition-colors ${isActive
+      ? "text-green border-b-2 border-green dark:text-green-light dark:border-green-light"
+      : "text-brown hover:text-green dark:text-cream-footer dark:hover:text-green-light"
     }`
 
   return (
@@ -34,11 +34,7 @@ export function Header() {
           to="/"
           className="font-heading text-xl font-bold text-green dark:text-green-light group flex items-center gap-2 transition-transform duration-200 hover:scale-105"
         >
-          <img
-            src={Logo}
-            alt="Logo"
-            className="transition-transform duration-200 group-hover:scale-125"
-          />
+          <Icon src={Logo} size={24} className="transition-transform duration-200 group-hover:scale-125 text-green dark:text-green-light" />
           <span>Pahin</span>
         </NavLink>
 
@@ -66,9 +62,9 @@ export function Header() {
             className="w-9 h-9 flex items-center justify-center rounded-lg transition-colors, transition-transform duration-200 hover:-rotate-12 hover:scale-105"
           >
             {theme === "dark" ? (
-              <img src={Sun} alt="Light theme" />
+              <Icon src={Sun} size={24} className="text-green dark:text-cream-footer" />
             ) : (
-              <img src={Moon} alt="Dark theme" />
+              <Icon src={Moon} size={22} className="text-green dark:text-cream-footer" />
             )}
           </button>
 

@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "svg:normalize": "node scripts/normalize-svg-icons.js",
+    "dev": "npm run svg:normalize && vite",
+    "build": "npm run svg:normalize && tsc -b && vite build",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

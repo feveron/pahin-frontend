@@ -18,24 +18,21 @@ export function BottomNavBar() {
             to={to}
             end={end}
             className={({ isActive }) =>
-              `flex flex-col items-center justify-center gap-1 w-full h-full text-xs font-medium transition-colors duration-200 ${
-                isActive
-                  ? "text-green dark:text-green-700"
-                  : "text-brown hover:text-green dark:text-cream-footer dark:hover:text-green-light"
+              `flex flex-col items-center justify-center gap-1 w-full h-full text-xs font-medium transition-colors duration-200 ${isActive
+                ? "text-green dark:text-green-700"
+                : "text-brown hover:text-green dark:text-cream-footer dark:hover:text-green-light"
               }`
             }
           >
             {({ isActive }) => (
               <>
                 <Icon
-                  className={`w-5 h-5 transition-transform duration-200 ${
-                    isActive ? "scale-110" : ""
-                  }`}
+                  className={`w-5 h-5 transition-transform duration-200 ${isActive ? "scale-110" : ""
+                    }`}
                 />
                 <span
-                  className={` transition-transform duration-200 ${
-                    isActive ? "scale-110 font-bold" : ""
-                  }`}
+                  className={` transition-transform duration-200 ${isActive ? "scale-110 font-bold" : ""
+                    }`}
                 >
                   {label}
                 </span>
