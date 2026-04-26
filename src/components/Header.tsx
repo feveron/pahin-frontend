@@ -5,6 +5,7 @@ import Sun from "../assets/icons/sun.svg"
 import Moon from "../assets/icons/moon.svg"
 import { CircleUserRound } from "lucide-react"
 import { Icon } from "./Icon"
+import { Button } from "./Button/Button"
 
 const navLinks = [
   { label: "Головна", to: "/" },
@@ -49,12 +50,11 @@ export function Header() {
         {/* Права частина */}
         <div className="flex items-center gap-3">
           {/* Посадити дерево */}
-          <button
-            onClick={() => navigate("/plant")}
-            className="px-4 py-1.5 rounded-lg bg-green hover:bg-green-dark text-white font-body text-sm font-medium transition-colors"
-          >
-            Посадити дерево
-          </button>
+          <Button
+            label="Посадити дерево"
+            onClick={() => navigate("/catalog")}
+            variant="alpha"
+          />
 
           {/* Перемикач теми */}
           <button

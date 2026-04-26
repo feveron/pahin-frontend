@@ -1,4 +1,4 @@
-import { act } from 'react';
+import { act } from "react"
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -21,7 +21,7 @@ export default {
         },
         dark: {
           DEFAULT: "#19190D",
-          input: "#212016", //inputs,
+          input: "#302f25", //inputs,
           comment: "#292821", //коментар у формі, кнопка поділитись сертифікатом в соц.м.
           footer: "#1D1C12", //footer, колір тексту у світлій темі
         },
@@ -35,7 +35,7 @@ export default {
         brown: "#683C2A",
         input: {
           text: "#707973",
-        }
+        },
       },
       fonts: {
         heading: ["Manrope", "sans-serif"],

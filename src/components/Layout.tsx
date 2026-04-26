@@ -1,13 +1,20 @@
 import { BottomNavBar } from "./BottomNavBar"
 import { Header } from "./Header"
 import { Footer } from "../components/Footer"
+import { Outlet } from "react-router-dom"
 
-export function Layout({ children }: { children: React.ReactNode }) {
+interface LayoutProps {
+  noFooter?: boolean
+}
+
+export function Layout({ noFooter = false }: LayoutProps) {
   return (
     <div className="justify-center pt-16 flex flex-col ">
       <Header />
-      <main>{children}</main>
-      <Footer />
+      <main className="flex-grow w-full">
+        <Outlet />
+      </main>
+      {!noFooter && <Footer />}
       <BottomNavBar />
     </div>
   )
