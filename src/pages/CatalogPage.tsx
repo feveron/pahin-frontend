@@ -6,7 +6,7 @@ import { FormCard } from "../components/TreeCards/FormCard";
 
 export function CatalogPage() {
   const [activeCard, setActiveCard] = useState(false)
-  const [comment, setComment] = useState("")
+  const [, setComment] = useState("")
 
   return (
     <div className="h-full w-full flex flex-col items-center gap-8 py-8">
