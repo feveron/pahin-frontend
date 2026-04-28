@@ -13,7 +13,7 @@ export function CatalogPage() {
       <div className="w-full flex flex-row justify-center items-center gap-5">
         <CatalogCard
           tag="Листьові"
-          image="https://lesorubexpert.ru/wp-content/uploads/2021/11/derevo-dub-47.jpg"
+          image=""
           title="Дуб Старий"
           subtitle="Quercus robur"
           description="Величне довговічне листяне дерево, відоме
