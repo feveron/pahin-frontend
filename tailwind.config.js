@@ -9,8 +9,8 @@ export default {
       colors: {
         green: {
           DEFAULT: "#105339", //текст в світлій темі
-          hover: "#2D6A4F", //текст в темній темі
-          light: "#B0F1CC",
+          hover: "#2D6A4F",
+          light: "#B0F1CC", //текст в темній темі
         },
         cream: {
           DEFAULT: "#FEFAE8",
