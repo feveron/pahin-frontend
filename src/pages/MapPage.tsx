@@ -1,65 +1,144 @@
-import { useState } from "react"
-import "leaflet/dist/leaflet.css"
-import { SlidersHorizontal } from "lucide-react"
+import { useRef, useState } from "react"
+import { SlidersHorizontal, Plus, Minus } from "lucide-react"
 import MapFilters from "../components/MapFilters"
 import { UkraineMask } from "../components/UkraineMask"
-import Map from "react-map-gl"
+import { MapButton } from "../components/MapButton"
+import { TreePopup } from "../components/TreePopUp"
+import { Map, Marker, type MapRef } from "react-map-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
 import { useThemeContext } from "../hooks/useTheme"
+import { CATEGORY_ICONS } from "../assets/categoryIcons"
+import type { Tree, TreeFilters } from "../types/tree"
+import { useTrees } from "../hooks/useTrees"
 
 export default function MapPage() {
-  const [filtersOpen, setFiltersOpen] = useState(false)
-  const [treeCount] = useState(0)
+  const [filters, setFilters] = useState<TreeFilters>({ limit: 100 })
+  const { trees, total, loading } = useTrees(filters)
   const { theme } = useThemeContext()
+  const [hoveredTree, setHoveredTree] = useState<Tree | null>(null)
+  const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(
+    null
+  )
+  const [filtersOpen, setFiltersOpen] = useState(false) // ← було відсутнє
+  const mapRef = useRef<MapRef>(null)
+
   const LIGHT_STYLE = "mapbox://styles/garniikk/cmonev9j4000p01sk74vm0hac"
   const DARK_STYLE = "mapbox://styles/garniikk/cmonf5unj004001r433hub6qp"
 
+  const handleTreeClick = (tree: Tree) => {
+    mapRef.current?.flyTo({
+      center: [tree.longitude, tree.latitude],
+      zoom: 16,
+      duration: 1000,
+    })
+  }
+
   return (
     <div className="relative w-full overflow-hidden h-[calc(100vh-64px)] md:h-screen">
-      {/* Панель фільтрів */}
+      {/* Фільтри */}
       <aside
         className={`
-        z-[1000] w-[280px] transition-transform duration-300 ease-out
-        md:absolute md:top-6 md:left-6
+        z-[1001] w-[280px] transition-transform duration-300 ease-out
+        md:absolute md:top-[calc(64px+1.5rem)] md:left-6 md:translate-y-0
         max-md:fixed max-md:bottom-0 max-md:left-0 max-md:right-0 max-md:w-full
         ${filtersOpen ? "max-md:translate-y-0" : "max-md:translate-y-full"}
       `}
       >
         <MapFilters
-          treeCount={treeCount}
+          treeCount={total}
           onClose={() => setFiltersOpen(false)}
+          onChange={(f) => setFilters((prev) => ({ ...prev, ...f }))}
         />
       </aside>
 
       <Map
-        initialViewState={{
-          longitude: 32.036,
-          latitude: 49.4,
-          zoom: 6,
-        }}
-        minZoom={4}
+        ref={mapRef}
+        initialViewState={{ longitude: 31.28, latitude: 49.5, zoom: 5 }}
+        minZoom={5}
         maxZoom={18}
         maxBounds={[
-          [18.5, 44.0],
-          [43.5, 53.5],
+          [21.5, 44.0],
+          [39.5, 53.5],
         ]}
         style={{ width: "100%", height: "100%" }}
         mapStyle={theme === "dark" ? DARK_STYLE : LIGHT_STYLE}
         mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
       >
         <UkraineMask color={theme === "dark" ? "#19190D" : "#FEFAE8"} />
+        {trees.map((tree) => (
+          <Marker
+            key={tree.id}
+            longitude={tree.longitude}
+            latitude={tree.latitude}
+            anchor="bottom"
+          >
+            <MapButton
+              icon={
+                CATEGORY_ICONS[tree.speciesCategory] ?? CATEGORY_ICONS["tree"]
+              }
+              onClick={() => handleTreeClick(tree)}
+              onMouseEnter={(e) => {
+                setHoveredTree(tree)
+                setHoverPos({ x: e.clientX, y: e.clientY })
+              }}
+              onMouseLeave={() => {
+                setHoveredTree(null)
+                setHoverPos(null)
+              }}
+            />
+          </Marker>
+        ))}
       </Map>
 
-      {/* Кнопка фільтрів — тільки мобайл */}
-      <button
-        onClick={() => setFiltersOpen(true)}
-        className="md:hidden absolute bottom-6 left-1/2 -translate-x-1/2 z-[1000] flex items-center gap-2 bg-green-800 text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg"
-      >
-        <SlidersHorizontal size={16} />
-        Фільтри
-      </button>
+      {/* Попап */}
+      {hoveredTree && hoverPos && (
+        <div
+          className="fixed z-[2000] pointer-events-none"
+          style={{ left: hoverPos.x + 16, top: hoverPos.y - 40 }}
+        >
+          <TreePopup tree={hoveredTree} onClose={() => setHoveredTree(null)} />
+        </div>
+      )}
 
-      {/* Overlay — мобайл */}
+      {/* Лоадер */}
+      {loading && (
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] bg-white dark:bg-dark px-4 py-2 rounded-full text-sm shadow">
+          Завантаження...
+        </div>
+      )}
+
+      {/* Кнопки зуму — ховаються коли фільтри відкриті */}
+      {!filtersOpen && (
+        <div className="absolute bottom-6 right-4 z-[1000] flex flex-col gap-1">
+          <button
+            onClick={() => mapRef.current?.zoomIn({ duration: 300 })}
+            className="w-10 h-10 rounded-xl bg-cream dark:bg-dark border border-black/10 dark:border-white/10 shadow-md flex items-center justify-center text-green dark:text-green-light hover:bg-neutral-50 dark:hover:bg-black transition-colors"
+            aria-label="Збільшити"
+          >
+            <Plus size={18} />
+          </button>
+          <button
+            onClick={() => mapRef.current?.zoomOut({ duration: 300 })}
+            className="w-10 h-10 rounded-xl bg-cream dark:bg-dark border border-black/10 dark:border-white/10 shadow-md flex items-center justify-center text-green dark:text-green-light hover:bg-neutral-50 dark:hover:bg-black transition-colors"
+            aria-label="Зменшити"
+          >
+            <Minus size={18} />
+          </button>
+        </div>
+      )}
+
+      {/* Кнопка фільтрів — ← !filtersOpen, не filtersOpen */}
+      {!filtersOpen && (
+        <button
+          onClick={() => setFiltersOpen(true)}
+          className="md:hidden absolute bottom-6 left-1/2 -translate-x-1/2 z-[1000] flex items-center gap-2 bg-green text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg"
+        >
+          <SlidersHorizontal size={16} />
+          Фільтри
+        </button>
+      )}
+
+      {/* Overlay */}
       {filtersOpen && (
         <div
           onClick={() => setFiltersOpen(false)}
