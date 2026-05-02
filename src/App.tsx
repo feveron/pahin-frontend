@@ -6,7 +6,7 @@ import { ProfileLayout } from "./pages/profile/ProfileLayout"
 import { MyTreesPage } from "./pages/profile/MyTreesPage"
 import { MyCertificatesPage } from "./pages/profile/MyCertificatesPage"
 import { Layout } from "./components/Layout"
-import { MapPage } from "./pages/MapPage"
+import MapPage from "./pages/MapPage"
 
 function App() {
   return (

@@ -27,3 +27,22 @@
     display: none;
   }
 }
+/* src/index.css */
+.mapboxgl-ctrl-attrib {
+  font-size: 10px !important;
+  opacity: 0.6;
+}
+
+.mapboxgl-ctrl-bottom-left {
+  display: none; /* прибирає лого зліва */
+}
+.mapboxgl-popup-content {
+  padding: 0 !important;
+  border-radius: 1rem !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.mapboxgl-popup-tip {
+  display: none; /* прибирає хвостик */
+}
