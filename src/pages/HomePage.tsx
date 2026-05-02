@@ -105,7 +105,7 @@ export function HomePage() {
             <Button
               label="Посадити дерево"
               variant="beta"
-              onClick={() => navigate("/plant")}
+              onClick={() => navigate("/catalog")}
               className="!w-auto"
             />
             <Button
