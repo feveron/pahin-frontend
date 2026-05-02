@@ -1,19 +1,6 @@
-// src/components/Footer/index.tsx
 import { Globe, Mail, Share2 } from "lucide-react"
-
 import Logo from "../assets/icons/logo.svg"
 import { Icon } from "./Icon"
-
-const resources = [
-  {
-    label: "Політика конфіденційності",
-    href: "https://life.pravda.com.ua/society/2021/03/20/244288/",
-  },
-  {
-    label: "Умови використання",
-    href: "https://chernigivlisgosp.com.ua/dereva-ukrayini-riznomanittya-ta-znachennya-dlya-prirodi-i-lyudej/",
-  },
-]
 
 export function PublicFooter() {
   return (
