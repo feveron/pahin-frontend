@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import type { Tree, TreeFilters } from "../types/tree"
-
-const API_URL = import.meta.env.VITE_API_URL
+import { api } from "../services/api"
 
 export function useTrees(filters: TreeFilters) {
   const [trees, setTrees] = useState<Tree[]>([])
@@ -23,10 +22,9 @@ export function useTrees(filters: TreeFilters) {
       setLoading(true)
       setError(null)
       try {
-        const res = await fetch(`${API_URL}/trees?${params.toString()}`)
-        const json = await res.json()
-        setTrees(json.data ?? [])
-        setTotal(json.total ?? json.data?.length ?? 0)
+        const res = await api.get(`/trees?${params.toString()}`)
+        setTrees(res.data.data ?? []) // ← res.data замість json
+        setTotal(res.data.total ?? res.data.data?.length ?? 0)
       } catch {
         setError("Не вдалось завантажити дерева")
       } finally {
