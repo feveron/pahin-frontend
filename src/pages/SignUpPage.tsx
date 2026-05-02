@@ -84,7 +84,7 @@ export function SignUpPage() {
                     <Icon src={Leaf} size={200} className="text-green dark:text-green-light" />
                 </div>
 
-                <div className="md:w-[50%] rounded-b-3xl md:rounded-r-3xl flex flex-col items-start bg-white dark:bg-neutral-600 gap-10 p-12">
+                <div className="md:w-[50%] rounded-b-3xl md:rounded-bl-none md:rounded-r-3xl flex flex-col items-start bg-white dark:bg-neutral-600 gap-10 p-12">
                     <div className="flex flex-col items-start gap-2">
                         <h2 className="text-[24px] dark:text-white font-bold text-center">
                             Створити акаунт

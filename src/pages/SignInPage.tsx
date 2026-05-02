@@ -55,12 +55,12 @@ export function SignInPage() {
     return (
         <>
             <div className="flex min-h-screen w-full items-center justify-center bg-cream dark:bg-dark p-[52px]">
-                <div className="flex md:h-[680px] dark:bg-dark-input max-w-[1200px] flex-col md:flex-row items-center justify-center bg-white rounded-3xl">
+                <div className="flex md:h-[680px] dark:bg-neutral-700 max-w-[1200px] flex-col md:flex-row items-center justify-center bg-white rounded-3xl shadow-[0_24px_48px_rgba(69,60,30,0.12),0_18px_40px_rgba(69,60,30,0.08)]">
                     <div className="flex-1 md:w-[50%] h-full flex items-start justify-start">
                         <img src={Baner} alt="banner" className="h-full object-contain object-left-top rounded-tl-3xl" />
                     </div>
 
-                    <div className="md:w-[50%] flex flex-col rounded-r-3xl items-start h-full bg-white dark:bg-neutral-600 gap-10 p-[96px]">
+                    <div className="md:w-[50%] flex flex-col rounded-r-3xl items-start h-full bg-white dark:bg-neutral-700 gap-10 p-[96px]">
                         <div className="flex flex-col items-start gap-2">
                             <h2 className="text-[24px] dark:text-white font-bold text-center">
                                 З поверненням
@@ -103,9 +103,9 @@ export function SignInPage() {
                             />
                         </form>
 
-                        <p className="text-center text-dark-footer mt-4">
-                            Немає акаунту?{" "}
-                            <span className="text-green font-bold cursor-pointer" onClick={() => navigate("/sign-up")}>
+                        <p className="w-full text-[16px] text-center dark:text-white/70 text-dark-footer mt-4">
+                            Немає акаунту?{"    "}
+                            <span className="text-green dark:text-green-light font-bold cursor-pointer" onClick={() => navigate("/sign-up")}>
                                 Зареєструватися
                             </span>
                         </p>

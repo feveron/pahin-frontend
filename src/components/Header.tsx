@@ -17,8 +17,6 @@ export function Header() {
   const { theme, toggleTheme } = useThemeContext()
   const navigate = useNavigate()
 
-  const isLoggedIn = !!localStorage.getItem("token")
-
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `font-body text-sm font-medium transition-colors ${isActive
       ? "text-green border-b-2 border-green dark:text-green-light dark:border-green-light"
@@ -69,7 +67,7 @@ export function Header() {
 
           {/* Акаунт */}
           <button
-            onClick={() => navigate(isLoggedIn ? "/profile" : "/login")}
+            onClick={() => navigate("/profile")}
             className="hidden md:flex w-9 h-9 items-center justify-center rounded-lg transition-transform duration-200 hover:scale-105"
             aria-label="Профіль"
           >
