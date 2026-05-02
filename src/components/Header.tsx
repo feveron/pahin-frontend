@@ -17,8 +17,7 @@ export function Header() {
   const { theme, toggleTheme } = useThemeContext()
   const navigate = useNavigate()
 
-  // TODO: замінити на реальний стан авторизації
-  const isLoggedIn = false
+  const isLoggedIn = !!localStorage.getItem("token")
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `font-body text-sm font-medium transition-colors ${isActive
