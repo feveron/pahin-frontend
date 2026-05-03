@@ -27,3 +27,11 @@ export interface TreeFilters {
   page?: number
   limit?: number
 }
+
+export type MapTreesResponse = {
+  status: string
+  data: Tree[]
+  total: number
+  page: number
+  totalPages: number
+}
