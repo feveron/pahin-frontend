@@ -27,12 +27,12 @@ export function TreePopup({ tree }: Props) {
         <div className="flex items-start justify-between gap-2">
           <div>
             <h2 className="text-lg font-bold text-gray-900 dark:text-cream-input leading-tight">
-              Гвінея
+              {tree.speciesName}
             </h2>
             <div className="flex items-center gap-1 mt-1">
               <MapPin className="w-3.5 h-3.5 text-gray-700 dark:text-brown" />
               <span className="text-xs text-gray-700 dark:text-cream-footer">
-                вул. Віовом, Київ
+                {tree.locationName}
               </span>
             </div>
           </div>

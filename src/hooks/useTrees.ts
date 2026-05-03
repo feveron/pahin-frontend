@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import type { Tree, TreeFilters } from "../types/tree"
-import { api } from "../services/api"
+import type { Tree, TreeFilters, MapTreesResponse } from "../types/tree"
+import { apiClient } from "../services/apiClient"
 
 export function useTrees(filters: TreeFilters) {
   const [trees, setTrees] = useState<Tree[]>([])
@@ -22,9 +22,9 @@ export function useTrees(filters: TreeFilters) {
       setLoading(true)
       setError(null)
       try {
-        const res = await api.get(`/trees?${params.toString()}`)
-        setTrees(res.data.data ?? []) // ← res.data замість json
-        setTotal(res.data.total ?? res.data.data?.length ?? 0)
+        const res = await apiClient.get<MapTreesResponse>(`/trees?${params.toString()}`)
+        setTrees(res.data ?? []) // ← res.data замість json
+        setTotal(res.total ?? res.data?.length ?? 0)
       } catch {
         setError("Не вдалось завантажити дерева")
       } finally {

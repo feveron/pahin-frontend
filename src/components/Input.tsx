@@ -21,7 +21,7 @@ export function Input({ icon, className, label, placeholder, type = "text", valu
                     placeholder={placeholder}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
-                    className={`flex-1 bg-cream-comment border-none w-full text-[16px] font-bold text-input-text dark:text-white dark:bg-dark-input placeholder:text-input-text dark:placeholder:text-white outline-none ${className}`}
+                    className={`flex-1 bg-cream-comment border-none w-full text-[16px] font-bold text-input-text dark:text-white dark:bg-dark-input placeholder:text-input-text dark:placeholder:text-neutral-400 placeholder:font-normal outline-none ${className}`}
                 />
             </div>
             {error && <span className="text-red-500 text-xs mt-1">{error}</span>}
