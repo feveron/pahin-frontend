@@ -35,3 +35,22 @@ export type MapTreesResponse = {
   page: number
   totalPages: number
 }
+export interface PlantTreeValues {
+  speciesId: string
+  speciesName: string
+  speciesCategory: string
+  speciesImage: string
+  latitude: number | null
+  longitude: number | null
+  locationName: string
+  message: string
+}
+export interface Species {
+  id: string
+  name: string
+  latinName: string
+  category: string
+  description: string
+  suitableFor: string
+  imageUrl: string
+}

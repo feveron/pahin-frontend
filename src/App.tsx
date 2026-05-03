@@ -9,6 +9,7 @@ import { Layout } from "./components/Layout"
 import MapPage from "./pages/MapPage"
 import { SignInPage } from "./pages/SignInPage"
 import { SignUpPage } from "./pages/SignUpPage"
+import PlantTreePage from "./pages/PlantTreePage"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       {/* guest + user routes */}
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/plant" element={<PlantTreePage />} />
       </Route>
 
       <Route element={<Layout noFooter />}>
