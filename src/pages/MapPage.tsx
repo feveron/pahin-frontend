@@ -15,15 +15,19 @@ export default function MapPage() {
   const [filters, setFilters] = useState<TreeFilters>({ limit: 100 })
   const { trees, total, loading } = useTrees(filters)
   const { theme } = useThemeContext()
-  const [hoveredTree, setHoveredTree] = useState<Tree | null>(null)
+  const [selectedTree, setSelectedTree] = useState<Tree | null>(null)
   const [hoverPos, setHoverPos] = useState<{ x: number; y: number } | null>(
     null
   )
+  const [isTouch, setIsTouch] = useState(false)
+
   const [filtersOpen, setFiltersOpen] = useState(false) // ← було відсутнє
   const mapRef = useRef<MapRef>(null)
 
   const LIGHT_STYLE = "mapbox://styles/garniikk/cmonev9j4000p01sk74vm0hac"
   const DARK_STYLE = "mapbox://styles/garniikk/cmonf5unj004001r433hub6qp"
+
+  const isTouchDevice = () => window.matchMedia("(hover: none)").matches
 
   const handleTreeClick = (tree: Tree) => {
     mapRef.current?.flyTo({
@@ -31,6 +35,11 @@ export default function MapPage() {
       zoom: 16,
       duration: 1000,
     })
+    if (isTouchDevice()) {
+      setIsTouch(true)
+      setSelectedTree(tree)
+      setHoverPos(null)
+    }
   }
 
   return (
@@ -74,16 +83,21 @@ export default function MapPage() {
           >
             <MapButton
               icon={
-                CATEGORY_ICONS[tree.speciesCategory] ?? CATEGORY_ICONS["tree"]
+                CATEGORY_ICONS[tree.speciesCategory] ?? CATEGORY_ICONS["дефолт"]
               }
               onClick={() => handleTreeClick(tree)}
               onMouseEnter={(e) => {
-                setHoveredTree(tree)
-                setHoverPos({ x: e.clientX, y: e.clientY })
+                if (!isTouchDevice()) {
+                  setIsTouch(false)
+                  setSelectedTree(tree)
+                  setHoverPos({ x: e.clientX, y: e.clientY })
+                }
               }}
               onMouseLeave={() => {
-                setHoveredTree(null)
-                setHoverPos(null)
+                if (!isTouchDevice()) {
+                  setSelectedTree(null)
+                  setHoverPos(null)
+                }
               }}
             />
           </Marker>
@@ -91,13 +105,36 @@ export default function MapPage() {
       </Map>
 
       {/* Попап */}
-      {hoveredTree && hoverPos && (
-        <div
-          className="fixed z-[2000] pointer-events-none"
-          style={{ left: hoverPos.x + 16, top: hoverPos.y - 40 }}
-        >
-          <TreePopup tree={hoveredTree} onClose={() => setHoveredTree(null)} />
-        </div>
+      {selectedTree && (
+        <>
+          {isTouch ? (
+            // Мобілка: попап знизу, над фільтрами, не перекриває їх
+            <div className="md:hidden fixed bottom-20 left-4 right-4 z-[998]">
+              <TreePopup
+                tree={selectedTree}
+                onClose={() => setSelectedTree(null)}
+              />
+            </div>
+          ) : (
+            // Десктоп: попап біля курсора з clamp щоб не виходив за межі
+            hoverPos && (
+              <div
+                style={{
+                  position: "fixed",
+                  left: `clamp(8px, ${hoverPos.x + 12}px, calc(100vw - 280px))`,
+                  top: `clamp(8px, ${hoverPos.y - 10}px, calc(100vh - 200px))`,
+                  zIndex: 1000,
+                  pointerEvents: "none",
+                }}
+              >
+                <TreePopup
+                  tree={selectedTree}
+                  onClose={() => setSelectedTree(null)}
+                />
+              </div>
+            )
+          )}
+        </>
       )}
 
       {/* Лоадер */}

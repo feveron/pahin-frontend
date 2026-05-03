@@ -7,10 +7,10 @@ import mapFruit from "../assets/icons/map-fruit.svg"
 import { type TreeCategory } from "../types/tree"
 
 export const CATEGORY_ICONS: Record<TreeCategory, string> = {
-  tree: mapTree,
-  sprout: mapPlant,
-  leaf: mapLeaf,
-  flower: mapFlower,
-  pine: mapPine,
-  fruit: mapFruit,
+  швидкоростучі: mapPlant,
+  хвойні: mapPine,
+  квітучі: mapFlower,
+  листяні: mapLeaf,
+  плодові: mapFruit,
+  дефолт: mapTree,
 }

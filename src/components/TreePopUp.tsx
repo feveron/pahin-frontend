@@ -5,9 +5,19 @@ interface Props {
   tree: Tree
   onClose: () => void
 }
-export function TreePopup({ tree }: Props) {
+export function TreePopup({ tree, onClose }: Props) {
   return (
-    <div className="w-[260px] bg-white dark:bg-black rounded-2xl shadow-xl  overflow-hidden ">
+    <div className="w-[260px] bg-white dark:bg-black rounded-2xl shadow-xl  overflow-hidden relative ">
+      {/* Кнопка закриття — важлива для мобілки */}
+      <button
+        onClick={onClose}
+        className="absolute top-2 right-2 z-10 w-7 h-7 flex items-center justify-center
+                   rounded-full bg-black/10 dark:bg-white/10 text-gray-600 dark:text-gray-300
+                   hover:bg-black/20 pointer-events-auto"
+        aria-label="Закрити"
+      >
+        ✕
+      </button>
       {/* Юзер */}
       <div className="px-4 py-3 flex items-center gap-3  bg-cream dark:bg-dark">
         <div className="w-10 h-10 rounded-full bg-green dark:bg-dark-comment flex items-center justify-center text-lg font-bold text-cream">
@@ -53,7 +63,7 @@ export function TreePopup({ tree }: Props) {
 
         <div className="mt-3 pb-3">
           <span className="text-xs text-gray-400 uppercase tracking-wide font-medium">
-            Посаджено: {tree.createdAt}
+            Посаджено: {tree.createdAt.slice(0, 10)}
           </span>
         </div>
       </div>

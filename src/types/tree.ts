@@ -1,10 +1,10 @@
 export type TreeCategory =
-  | "tree"
-  | "sprout"
-  | "leaf"
-  | "flower"
-  | "pine"
-  | "fruit"
+  | "швидкоростучі"
+  | "хвойні"
+  | "квітучі"
+  | "листяні"
+  | "плодові"
+  | "дефолт"
 
 export interface Tree {
   id: string
