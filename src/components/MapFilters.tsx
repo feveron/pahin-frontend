@@ -41,7 +41,7 @@ interface Props {
   }) => void
 }
 
-export default function MapFilters({ onClose, onChange }: Props) {
+export default function MapFilters({ treeCount, onChange }: Props) {
   const [treeType, setTreeType] = useState("")
   const [region, setRegion] = useState("Всі області")
   const [dateFilter, setDateFilter] = useState<DateFilter>("30days")
@@ -62,7 +62,6 @@ export default function MapFilters({ onClose, onChange }: Props) {
 
   const handleApply = () => {
     buildFilters(treeType, region, dateFilter)
-    onClose?.()
   }
 
   const handleReset = () => {
@@ -83,7 +82,7 @@ export default function MapFilters({ onClose, onChange }: Props) {
       </div>
 
       {/* Тіло */}
-      <div className="px-5 py-5 flex flex-col gap-4">
+      <div className="px-5 py-1 flex flex-col gap-4">
         {/* Вид дерева */}
         <div className="flex flex-col gap-1.5 ">
           <label className="text-[11px] font-semibold tracking-widest text-green dark:text-green-light uppercase">
@@ -149,7 +148,11 @@ export default function MapFilters({ onClose, onChange }: Props) {
             />
           </div>
         </div>
-
+        {treeCount === 0 && (
+          <p className="text-center text-xs text-gray-400 ">
+            Дерев не знайдено
+          </p>
+        )}
         {/* Кнопки */}
         <Button
           label="Застосувати фільтри"
@@ -160,7 +163,7 @@ export default function MapFilters({ onClose, onChange }: Props) {
         {/* Скинути */}
         <button
           onClick={handleReset}
-          className="w-full py-2 text-sm text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+          className="w-full py-2 text-sm text-gray-600 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
         >
           Скинути фільтри
         </button>
