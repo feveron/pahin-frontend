@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-
   html,
   body,
   #root {
@@ -17,7 +16,6 @@
     background-color: #f5eedc;
     font-family: "Manrope", sans-serif;
   }
-
 
   html.dark body {
     background-color: #111111;
@@ -61,4 +59,7 @@
 
 .mapboxgl-popup-tip {
   display: none; /* прибирає хвостик */
+}
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
 }

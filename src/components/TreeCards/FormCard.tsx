@@ -13,6 +13,7 @@ type FormCardProps = {
   className?: string
   location: string
   price: number
+  commentValue?: string
   onChange?: (comment: string) => void
 }
 
@@ -23,11 +24,10 @@ export function FormCard({
   className,
   location,
   price = 0,
-  onChange,
+  commentValue,
 }: FormCardProps) {
   const [hide, setHide] = useState(true)
   const date = formatDateUA(new Date())
-  const [comment, setComment] = useState("")
 
   return (
     <div
@@ -57,7 +57,7 @@ export function FormCard({
           />
         )}
         {/* TAG */}
-        <Tag text="·   Попередній огляд" />
+        <Tag text=" Попередній огляд" />
         <div className="absolute flex flex-col bottom-3 w-full left-4  items-start">
           <p className="text-[12px] ml-2 font-semibold uppercase text-white">
             Вид
@@ -104,31 +104,15 @@ export function FormCard({
             className="text-brown dark:text-white/70"
           />
           <div className="relative flex-1">
-            {comment && (
-              <>
-                <span className="absolute left-0 top-0 text-[30px] text-black/80 dark:text-white italic">
-                  “
-                </span>
-
-                <span className="absolute bottom-0 right-0 text-black/80 dark:text-white text-[30px] italic">
-                  ”
-                </span>
-              </>
+            {commentValue ? (
+              <p className="text-sm text-dark-footer dark:text-white/70 italic">
+                "{commentValue}"
+              </p>
+            ) : (
+              <p className="text-sm text-gray-400 italic">
+                Ваше повідомлення до дерева...
+              </p>
             )}
-            <textarea
-              placeholder="Тут Ви можете залишити коментар, який можуть бачити інші користувачі"
-              onChange={(e) => {
-                setComment(e.target.value)
-                onChange?.(e.target.value)
-              }}
-              className={`
-                                h-full w-full resize-none bg-transparent text-sm
-                                text-black/80 dark:text-white
-                                placeholder:text-black/50 dark:placeholder:text-white/50
-                                focus:outline-none overflow-y-auto scrollbar-hidden
-                                ${comment ? "pr-4 pl-6" : ""}
-                            `}
-            />
           </div>
         </div>
         <div className="flex w-full py-4 border-t border-cream-footer dark:border-cream/30 items-center justify-start flex-row">

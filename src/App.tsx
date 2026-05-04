@@ -9,6 +9,7 @@ import { Layout } from "./components/Layout"
 import MapPage from "./pages/MapPage"
 import { SignInPage } from "./pages/SignInPage"
 import { SignUpPage } from "./pages/SignUpPage"
+import PlantTreePage from "./pages/PlantTreePage"
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
           <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/plant" element={<PlantTreePage />} />
 
           <Route path="/profile" element={<ProfileLayout />}>
             <Route index element={<MyTreesPage />} />

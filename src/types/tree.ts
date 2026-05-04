@@ -1,10 +1,10 @@
 export type TreeCategory =
-  | "tree"
-  | "sprout"
-  | "leaf"
-  | "flower"
-  | "pine"
-  | "fruit"
+  | "швидкоростучі"
+  | "хвойні"
+  | "квітучі"
+  | "листяні"
+  | "плодові"
+  | "дефолт"
 
 export interface Tree {
   id: string
@@ -34,4 +34,23 @@ export type MapTreesResponse = {
   total: number
   page: number
   totalPages: number
+}
+export interface PlantTreeValues {
+  speciesId: string
+  speciesName: string
+  speciesCategory: string
+  speciesImage: string
+  latitude: number | null
+  longitude: number | null
+  locationName: string
+  message: string
+}
+export interface Species {
+  id: string
+  name: string
+  latinName: string
+  category: string
+  description: string
+  suitableFor: string
+  imageUrl: string
 }
