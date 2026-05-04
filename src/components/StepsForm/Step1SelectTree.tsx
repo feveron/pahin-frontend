@@ -21,7 +21,7 @@ export function Step1TreeSelect({ formik }: Props) {
         inline: "center",
       })
     }
-  }, [loading])
+  }, [loading, values.speciesId])
 
   return (
     <div className="relative w-full">

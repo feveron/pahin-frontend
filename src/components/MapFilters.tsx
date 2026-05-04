@@ -1,14 +1,7 @@
 import { useState } from "react"
 import { SlidersHorizontal, ChevronDown } from "lucide-react"
 import { Button } from "./Button/Button"
-const TREE_TYPES = [
-  "Всі види",
-  "хвойні", // ← точно як в беці
-  "листяні",
-  "плодові",
-  "квітучі",
-  "швидкоростучі",
-]
+
 const REGIONS = [
   "Всі області",
   "Вінницька",

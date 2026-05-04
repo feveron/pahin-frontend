@@ -53,9 +53,7 @@ export default function PlantTreePage() {
       onSubmit={async (values, { setSubmitting }) => {
         try {
           await handlePlantTree(values)
-        } catch (err) {
-          console.error("Помилка:", err)
-        } finally {
+        } catch {
           setSubmitting(false)
         }
       }}
