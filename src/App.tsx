@@ -23,7 +23,6 @@ function App() {
       {/* guest + user routes */}
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/plant" element={<PlantTreePage />} />
       </Route>
 
       <Route element={<Layout noFooter />}>
@@ -34,6 +33,7 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
           <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/plant" element={<PlantTreePage />} />
 
           <Route path="/profile" element={<ProfileLayout />}>
             <Route index element={<MyTreesPage />} />
