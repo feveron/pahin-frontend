@@ -1,6 +1,6 @@
 import { Formik, Form } from "formik"
 import * as Yup from "yup"
-import { useSearchParams } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { Step1TreeSelect } from "../components/StepsForm/Step1SelectTree"
 import { Step2Location } from "../components/StepsForm/Step2Location"
 import { Step3Message } from "../components/StepsForm/Step3Message"
@@ -8,6 +8,7 @@ import { Step4Payment } from "../components/StepsForm/Step4Payment"
 import { FormCard } from "../components/TreeCards/FormCard"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import type { PlantTreeValues } from "../types/tree"
+import { apiClient } from "../services/apiClient"
 
 // Валідація єдина для всієї форми (без кроків)
 const validationSchema = Yup.object({
@@ -18,10 +19,21 @@ const validationSchema = Yup.object({
 })
 
 export default function PlantTreePage() {
+  const navigate = useNavigate()
   const { user } = useCurrentUser()
   const [searchParams] = useSearchParams()
   const preselectedId = searchParams.get("speciesId") ?? "" // ← тут, всередині компонента
+  const handlePlantTree = async (values: PlantTreeValues) => {
+    await apiClient.post("/trees", {
+      speciesId: values.speciesId,
 
+      latitude: values.latitude,
+      longitude: values.longitude,
+      locationName: values.locationName,
+      message: values.message,
+    })
+    navigate("/map")
+  }
   const initialValues: PlantTreeValues = {
     speciesId: preselectedId, // ← тепер preselectedId вже визначений
     speciesName: "",
@@ -38,8 +50,14 @@ export default function PlantTreePage() {
       initialValues={initialValues}
       validationSchema={validationSchema}
       validateOnChange={false}
-      onSubmit={async (values) => {
-        console.log("Submit:", values)
+      onSubmit={async (values, { setSubmitting }) => {
+        try {
+          await handlePlantTree(values)
+        } catch (err) {
+          console.error("Помилка:", err)
+        } finally {
+          setSubmitting(false)
+        }
       }}
     >
       {(formik) => (

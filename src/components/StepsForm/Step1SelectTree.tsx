@@ -2,7 +2,7 @@ import { MiniCard } from "../TreeCards/miniCard"
 import type { FormikProps } from "formik"
 import type { PlantTreeValues, Species } from "../../types/tree"
 import { useSpecies } from "../../hooks/useSpecies" // хук для отримання видів з беку
-import { useState } from "react"
+import { useEffect, useRef } from "react"
 
 interface Props {
   formik: FormikProps<PlantTreeValues>
@@ -11,12 +11,17 @@ interface Props {
 export function Step1TreeSelect({ formik }: Props) {
   const { setFieldValue, values } = formik
   const { species, loading } = useSpecies()
-  const [activeCategory, setActiveCategory] = useState("Всі")
+  const selectedRef = useRef<HTMLDivElement>(null)
 
-  const filtered =
-    activeCategory === "Всі"
-      ? species
-      : species.filter((s) => s.category === activeCategory)
+  useEffect(() => {
+    if (!loading && values.speciesId && selectedRef.current) {
+      selectedRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      })
+    }
+  }, [loading])
 
   return (
     <div className="relative w-full">
@@ -33,8 +38,11 @@ export function Step1TreeSelect({ formik }: Props) {
         style={{ scrollbarWidth: "none" }}
       >
         <div className="flex-none w-1 shrink-0" />
-        {filtered.map((s: Species) => (
-          <div key={s.id} className="flex-none w-[200px] snap-start ">
+        {species.map((s: Species) => (
+          <div
+            key={s.id}
+            className="flex-none w-[200px] snap-start ref={values.speciesId === s.id ? selectedRef : null}"
+          >
             <MiniCard
               key={s.id}
               image={s.imageUrl}

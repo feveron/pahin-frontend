@@ -41,9 +41,9 @@ export function Step4Payment({ onSubmit, isLoading }: Props) {
         </div>
 
         <Button
-          label={isLoading ? "Зберігаємо..." : "🌳 Посадити моє дерево"}
+          label={isLoading ? "Зберігаємо..." : " Посадити моє дерево"}
           onClick={onSubmit}
-          variant="alpha"
+          variant="beta"
           disabled={isLoading}
           className="w-full"
           type="button"
