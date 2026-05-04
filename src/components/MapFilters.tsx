@@ -3,11 +3,11 @@ import { SlidersHorizontal, ChevronDown } from "lucide-react"
 import { Button } from "./Button/Button"
 const TREE_TYPES = [
   "Всі види",
-  "Хвойні",
-  "Листяні тіньові",
-  "Плодові",
-  "Декоративні квітучі",
-  "Швидкозростаючі",
+  "хвойні", // ← точно як в беці
+  "листяні",
+  "плодові",
+  "квітучі",
+  "швидкоростучі",
 ]
 const REGIONS = [
   "Всі області",
@@ -49,7 +49,7 @@ interface Props {
 }
 
 export default function MapFilters({ onClose, onChange }: Props) {
-  const [treeType, setTreeType] = useState("Всі види")
+  const [treeType, setTreeType] = useState("")
   const [region, setRegion] = useState("Всі області")
   const [dateFilter, setDateFilter] = useState<DateFilter>("30days")
 
@@ -61,7 +61,7 @@ export default function MapFilters({ onClose, onChange }: Props) {
             .split("T")[0]
         : undefined
     onChange({
-      species: type === "Всі види" ? undefined : type,
+      species: type.trim() === "" ? undefined : type.trim(),
       region: reg === "Всі області" ? undefined : reg,
       dateFrom,
     })
@@ -73,7 +73,7 @@ export default function MapFilters({ onClose, onChange }: Props) {
   }
 
   const handleReset = () => {
-    setTreeType("Всі види")
+    setTreeType("")
     setRegion("Всі області")
     setDateFilter("30days")
     onChange({})
@@ -96,21 +96,13 @@ export default function MapFilters({ onClose, onChange }: Props) {
           <label className="text-[11px] font-semibold tracking-widest text-green dark:text-green-light uppercase">
             Вид дерева
           </label>
-          <div className="relative ">
-            <select
-              value={treeType}
-              onChange={(e) => setTreeType(e.target.value)}
-              className="w-full px-3.5 py-2.5 border border-black/10 rounded-xl text-sm text-green dark:text-green-light bg-cream-input dark:bg-dark-input appearance-none cursor-pointer focus:outline-none focus:border-green transition-colors pr-8"
-            >
-              {TREE_TYPES.map((t) => (
-                <option key={t}>{t}</option>
-              ))}
-            </select>
-            <ChevronDown
-              size={14}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-            />
-          </div>
+          <input
+            type="text"
+            value={treeType}
+            onChange={(e) => setTreeType(e.target.value)}
+            placeholder="Наприклад: Сосна, Верба..."
+            className="w-full px-3.5 py-2.5 border border-black/10 rounded-xl text-sm text-green dark:text-green-light bg-cream-input dark:bg-dark-input focus:outline-none focus:border-green transition-colors placeholder:text-gray-500"
+          />
         </div>
         {/* Дата посадки */}
         <div className="flex flex-col gap-1.5">

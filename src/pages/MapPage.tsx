@@ -56,7 +56,7 @@ export default function MapPage() {
         <MapFilters
           treeCount={total}
           onClose={() => setFiltersOpen(false)}
-          onChange={(f) => setFilters((prev) => ({ ...prev, ...f }))}
+          onChange={(f) => setFilters({ limit: 100, ...f })}
         />
       </aside>
 
@@ -136,7 +136,11 @@ export default function MapPage() {
           )}
         </>
       )}
-
+      {!loading && trees.length === 0 && (
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] bg-green dark:bg-green-light px-4 py-2 rounded-full text-sm shadow text-cream-footer dark:text-dark-footer">
+          Дерев не знайдено
+        </div>
+      )}
       {/* Лоадер */}
       {loading && (
         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] bg-white dark:bg-dark px-4 py-2 rounded-full text-sm shadow">
