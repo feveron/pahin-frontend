@@ -25,11 +25,9 @@ export function FormCard({
   location,
   price = 0,
   commentValue,
-  onChange,
 }: FormCardProps) {
   const [hide, setHide] = useState(true)
   const date = formatDateUA(new Date())
-  const [comment, setComment] = useState("")
 
   return (
     <div
