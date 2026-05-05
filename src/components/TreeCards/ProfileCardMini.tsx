@@ -3,6 +3,7 @@ import Calendar from "../../assets/icons/calendar.svg"
 import PlaceholderImage from "../../assets/images/card-placeholder.jpg"
 import { Icon } from "../Icon"
 import { formatDateUA } from "../../utils/FormatDate"
+import { GrowthProgress } from "./GrowProgress"
 
 type Props = {
   image: string
@@ -11,6 +12,7 @@ type Props = {
   planted: Date
   onClick?: () => void
   isActive?: boolean
+  showProgress?: boolean
 }
 
 export function ProfileCardMini({
@@ -20,6 +22,7 @@ export function ProfileCardMini({
   planted,
   onClick,
   isActive,
+  showProgress,
 }: Props) {
   return (
     <div
@@ -66,6 +69,12 @@ export function ProfileCardMini({
             {location}
           </span>
         </div>
+        {/* ✅ Прогрес бар тільки для активної картки */}
+        {showProgress && (
+          <div className="mt-2">
+            <GrowthProgress plantedDate={planted} />
+          </div>
+        )}
       </div>
     </div>
   )

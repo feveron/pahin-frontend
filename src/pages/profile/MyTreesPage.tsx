@@ -29,7 +29,7 @@ export default function MyTreesPage() {
       {selectedTree && (
         <div className="hidden sm:block">
           <ProfileCard
-            image=""
+            image={selectedTree.speciesImage ?? ""}
             title={selectedTree.speciesName}
             location={selectedTree.locationName}
             planted={new Date(selectedTree.createdAt)}
@@ -44,11 +44,12 @@ export default function MyTreesPage() {
           <div className="sm:hidden">
             {selectedTree && (
               <ProfileCardMini
-                image=""
+                image={selectedTree.speciesImage ?? ""}
                 title={selectedTree.speciesName}
                 location={selectedTree.locationName}
                 planted={new Date(selectedTree.createdAt)}
                 isActive
+                showProgress
               />
             )}
           </div>
@@ -56,7 +57,7 @@ export default function MyTreesPage() {
           {otherTrees.map((tree) => (
             <ProfileCardMini
               key={tree.id}
-              image=""
+              image={tree.speciesImage ?? ""}
               title={tree.speciesName}
               location={tree.locationName}
               planted={new Date(tree.createdAt)}
