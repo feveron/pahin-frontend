@@ -66,7 +66,7 @@ export default function MyTreesPage() {
             />
           ))}
           <div
-            onClick={() => navigate("/plant")}
+            onClick={() => navigate("/catalog")}
             className="cursor-pointer rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-700 flex flex-col items-center justify-center gap-2 p-6 hover:border-green transition-colors min-h-[96px]"
           >
             <span className="text-3xl text-gray-300">+</span>
@@ -79,7 +79,6 @@ export default function MyTreesPage() {
 
       {!loading && trees.length === 0 && (
         <div className="flex flex-col items-center gap-4 py-16 text-center">
-          <span className="text-5xl">🌱</span>
           <p className="text-gray-400 text-sm max-w-[200px]">
             У тебе ще немає посаджених дерев
           </p>
