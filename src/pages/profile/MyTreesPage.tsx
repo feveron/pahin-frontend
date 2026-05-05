@@ -1,13 +1,29 @@
 import { useNavigate } from "react-router-dom"
 import { ProfileCard } from "../../components/TreeCards/ProfileCard"
 import { useUserTrees } from "../../hooks/useUserTrees"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useRef } from "react"
 import { ProfileCardMini } from "../../components/TreeCards/ProfileCardMini"
 
 export default function MyTreesPage() {
   const { trees, loading } = useUserTrees()
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const navigate = useNavigate()
+
+  const topCardRefDesktop = useRef<HTMLDivElement>(null)
+  const topCardRefMobile = useRef<HTMLDivElement>(null)
+
+  const handleSelectTree = (id: string) => {
+    setSelectedId(id)
+    setSelectedId(id)
+    setTimeout(() => {
+      // скролимо до того який видимий
+      const ref =
+        window.innerWidth >= 640 ? topCardRefDesktop : topCardRefMobile
+      const top =
+        (ref.current?.getBoundingClientRect().top ?? 0) + window.scrollY - 80
+      window.scrollTo({ top, behavior: "smooth" })
+    }, 50)
+  }
 
   // ← замість useEffect: вибираємо перше дерево через useMemo
   const selectedTree = useMemo(() => {
@@ -27,7 +43,7 @@ export default function MyTreesPage() {
 
       {/* Велика картка — на мобілці повна ширина */}
       {selectedTree && (
-        <div className="hidden sm:block">
+        <div ref={topCardRefDesktop} className="hidden sm:block">
           <ProfileCard
             image={selectedTree.speciesImage ?? ""}
             title={selectedTree.speciesName}
@@ -41,7 +57,7 @@ export default function MyTreesPage() {
       {!loading && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* на мобілці показуємо і selectedTree теж */}
-          <div className="sm:hidden">
+          <div ref={topCardRefMobile} className="sm:hidden">
             {selectedTree && (
               <ProfileCardMini
                 image={selectedTree.speciesImage ?? ""}
@@ -62,7 +78,7 @@ export default function MyTreesPage() {
               location={tree.locationName}
               planted={new Date(tree.createdAt)}
               isActive={tree.id === selectedTree?.id}
-              onClick={() => setSelectedId(tree.id)}
+              onClick={() => handleSelectTree(tree.id)}
             />
           ))}
           <div
