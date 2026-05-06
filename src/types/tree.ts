@@ -12,6 +12,7 @@ export interface Tree {
   userName: string
   speciesName: string
   speciesCategory: TreeCategory
+  speciesImage: string
   latitude: number
   longitude: number
   locationName: string

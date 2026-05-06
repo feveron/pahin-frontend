@@ -75,9 +75,9 @@ const steps = [
 ]
 
 const stats = [
-  { value: "12,000", label: "Дерев посаджено" },
-  { value: "1,276", label: "Активних волонтерів" },
-  { value: "56", label: "Міст охоплено" },
+  { value: "5,000", label: "Дерев посаджено" },
+  { value: "726", label: "Активних волонтерів" },
+  { value: "42", label: "Міст охоплено" },
 ]
 
 export function HomePage() {
