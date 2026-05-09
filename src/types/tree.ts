@@ -18,6 +18,7 @@ export interface Tree {
   locationName: string
   message: string
   createdAt: string
+  status: "pending" | "approved" | "rejected"
 }
 
 export interface TreeFilters {

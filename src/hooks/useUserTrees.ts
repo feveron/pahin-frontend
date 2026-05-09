@@ -17,8 +17,10 @@ export function useUserTrees() {
     const fetchTrees = async () => {
       setLoading(true)
       try {
-        const res = await apiClient.get<ApiResponse>("/users/me/trees")
-        setTrees(res.data.trees ?? []) // ← res.data.trees а не res.data
+        const res = await apiClient.get<ApiResponse>(
+          `/users/me/trees?_t=${Date.now()}`
+        )
+        setTrees(res.data.trees ?? [])
       } catch (_err) {
         // помилка завантаження
       } finally {
