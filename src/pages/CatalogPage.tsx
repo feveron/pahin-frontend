@@ -14,6 +14,7 @@ export function CatalogPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>('всі види')
   const { species, loading } = useSpecies()
   const [visibleCount, setVisibleCount] = useState(6)
+  const [isLoadingMore, setIsLoadingMore] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -33,6 +34,15 @@ export function CatalogPage() {
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category)
     setVisibleCount(6) // Скидаємо лічильник видимих карток при зміні категорії
+  }
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true)
+
+    setTimeout(() => {
+      setVisibleCount((prev) => prev + 6)
+      setIsLoadingMore(false)
+    }, 800)
   }
 
   const filteredSpecies = species.filter((s) => {
@@ -114,7 +124,7 @@ export function CatalogPage() {
               label="Показати ще"
               variant="beta"
               className="max-w-[260px]"
-              onClick={() => setVisibleCount((prev) => prev + 6)}
+              onClick={handleLoadMore}
             />
           </div>
         )}
