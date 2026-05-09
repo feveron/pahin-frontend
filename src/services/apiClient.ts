@@ -10,7 +10,10 @@ export const apiClient = {
     const res = await api.post<T>(url, data)
     return res.data
   },
-
+  patch: async <T>(url: string, data?: unknown): Promise<T> => {
+    const res = await api.patch<T>(url, data)
+    return res.data
+  },
   delete: async <T>(url: string): Promise<T> => {
     const res = await api.delete<T>(url)
     return res.data

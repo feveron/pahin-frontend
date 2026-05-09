@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate, Outlet } from "react-router-dom"
 import { HomePage } from "./pages/HomePage"
-import { ProfileSettingsPage } from "./pages/profile/ProfileSettingsPage"
+import ProfileSettingsPage from "./pages/profile/ProfileSettingsPage"
 import { CatalogPage } from "./pages/CatalogPage"
 import { ProfileLayout } from "./pages/profile/ProfileLayout"
 import MyTreesPage from "./pages/profile/MyTreesPage"
