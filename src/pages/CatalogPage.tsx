@@ -117,6 +117,10 @@ export function CatalogPage() {
                 onClick={handleCardClick}
               />
             ))}
+          {isLoadingMore &&
+            Array.from({ length: 3 }).map((_, i) => (
+              <CatalogCardSkeleton key={`skeleton-${i}`} />
+            ))}
         </div>
         {visibleCount < filteredSpecies.length && (
           <div className="flex justify-center w-full">
