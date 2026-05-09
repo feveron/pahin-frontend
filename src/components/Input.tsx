@@ -1,5 +1,5 @@
 type InputProps = {
-    label: string
+    label?: string
     icon?: string | undefined
     placeholder?: string
     className?: string

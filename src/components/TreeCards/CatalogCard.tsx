@@ -21,6 +21,7 @@ type CatalogCardProps = {
     distance?: string
     location?: string
   }
+  onClick?: () => void
 }
 
 export function CatalogCard({
@@ -31,6 +32,7 @@ export function CatalogCard({
   description,
   className,
   info,
+  onClick
 }: CatalogCardProps) {
   const [hide, setHide] = useState(true)
 
@@ -62,59 +64,63 @@ export function CatalogCard({
       </div>
 
       {/* CONTENT */}
-      <div className="p-8 flex flex-col gap-3">
-        <div>
-          <h3 className="text-[24px] break-words font-semibold text-black dark:text-white">
-            {title}
-          </h3>
-          {subtitle && (
-            <p className="text-[14px] text-brown dark:text-gray-400 font-medium">
-              {subtitle}
-            </p>
-          )}
+      <div className="py-3 flex-1 justify-between px-2 min-[440px]:p-8 flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
+          <div>
+            <h3 className="text-[24px] break-words font-semibold text-black dark:text-white">
+              {title}
+            </h3>
+            {subtitle && (
+              <p className="text-[14px] text-brown dark:text-gray-400 font-medium">
+                {subtitle}
+              </p>
+            )}
+          </div>
+
+          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+            {description}
+          </p>
         </div>
 
-        <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-          {description}
-        </p>
-
         {/* INFO BLOCK */}
-        {info && (
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3 bg-cream-input dark:bg-neutral-800 p-4 text-sm rounded-xl text-black/80 dark:text-white">
+        <div className="flex-col flex gap-4">
+          {info && (
+            <div className="grid grid-cols-2 gap-x-6 gap-y-3 bg-cream-input dark:bg-neutral-800 p-4 text-sm rounded-xl text-black/80 dark:text-white">
 
-            {info?.ground && (
-              <div className="flex items-center gap-2 min-w-0">
-                <Icon src={Ground} size={14} className="text-green dark:text-green-light" />
-                <span className="truncate">Ґрунт: {info.ground}</span>
-              </div>
-            )}
+              {info?.ground && (
+                <div title={info.ground} className="flex items-center gap-2 min-w-0">
+                  <Icon src={Ground} size={14} className="text-green dark:text-green-light" />
+                  <span className="truncate">Ґрунт: {info.ground}</span>
+                </div>
+              )}
 
-            {info?.sun && (
-              <div className="flex items-center gap-2 min-w-0">
-                <Icon src={Sun} size={14} className="text-green dark:text-green-light" />
-                <span className="truncate">Сонце: {info.sun}</span>
-              </div>
-            )}
+              {info?.sun && (
+                <div title={info.sun} className="flex items-center gap-2 min-w-0">
+                  <Icon src={Sun} size={14} className="text-green dark:text-green-light" />
+                  <span className="truncate">Сонце: {info.sun}</span>
+                </div>
+              )}
 
-            {info?.distance && (
-              <div className="flex items-center gap-2 min-w-0">
-                <Icon src={Distance} size={14} className="text-green dark:text-green-light" />
-                <span className="truncate">Відстань: {info.distance}</span>
-              </div>
-            )}
+              {info?.distance && (
+                <div title={info.distance} className="flex items-center gap-2 min-w-0">
+                  <Icon src={Distance} size={14} className="text-green dark:text-green-light" />
+                  <span className="truncate">Відстань: {info.distance}</span>
+                </div>
+              )}
 
-            {info?.location && (
-              <div className="flex items-center gap-2 min-w-0">
-                <Icon src={Location} size={14} className="text-green dark:text-green-light shrink-0" />
-                <span className="break-words truncate leading-tight">
-                  Область: {info.location}
-                </span>
-              </div>
-            )}
-          </div>)}
+              {info?.location && (
+                <div title={info.location} className="flex items-center gap-2 min-w-0">
+                  <Icon src={Location} size={14} className="text-green dark:text-green-light shrink-0" />
+                  <span className="break-words truncate leading-tight">
+                    Область: {info.location}
+                  </span>
+                </div>
+              )}
+            </div>)}
 
-        {/* BUTTON */}
-        <Button variant="delta" label="Посадити це дерево" onClick={() => { alert("Посадити це дерево") }} />
+          {/* BUTTON */}
+          <Button variant="delta" label="Посадити це дерево" onClick={onClick} />
+        </div>
       </div>
     </div>
   )
