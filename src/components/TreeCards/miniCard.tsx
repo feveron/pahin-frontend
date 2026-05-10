@@ -23,7 +23,7 @@ export function MiniCard({
   return (
     <div
       onClick={onClick}
-      className={`cursor-pointer
+      className={`cursor-pointer transform-gpu
         w-full max-w-[220px] max-h-[280px] aspect-[3/4] rounded-2xl bg-cream-footer dark:bg-dark overflow-hidden flex flex-col justify-center group ${className} ${active ? "ring-2 ring-green dark:ring-green-light" : "hover:ring-2 hover:ring-green-hover"}      `}
     >
       {/* IMAGE */}
@@ -38,9 +38,8 @@ export function MiniCard({
             <img
               src={image}
               alt={title}
-              className={`absolute z-10 inset-0 h-full w-full object-cover transition-opacity duration-300 ${
-                loaded ? "opacity-100" : "opacity-0"
-              }`}
+              className={`absolute z-10 inset-0 h-full w-full object-cover transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"
+                }`}
               onLoad={() => setLoaded(true)}
               onError={() => setError(true)}
             />

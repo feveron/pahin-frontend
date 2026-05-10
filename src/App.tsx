@@ -12,44 +12,50 @@ import { SignUpPage } from "./pages/SignUpPage"
 import PlantTreePage from "./pages/PlantTreePage"
 import { AdminPage } from "./pages/AdminPage"
 import { useCurrentUser } from "./hooks/useCurrentUser"
+import { ScrollToTop } from "./components/ScrollToTop"
 
 function App() {
   return (
-    <Routes>
-      {/* auth routes */}
-      <Route element={<PublicRoute />}>
-        <Route path="/sign-in" element={<SignInPage />} />
-        <Route path="/sign-up" element={<SignUpPage />} />
-      </Route>
+    <>
+      <ScrollToTop />
 
-      {/* guest + user routes */}
-      <Route element={<Layout />}>
-        <Route path="/" element={<HomePage />} />
-      </Route>
-
-      <Route element={<Layout noFooter />}>
-        <Route path="/map" element={<MapPage />} />
-      </Route>
-
-      {/* only authorized routes */}
-      <Route element={<ProtectedRoute />}>
-        <Route element={<AdminRoute />}>
-          <Route path="/admin" element={<AdminPage />} />
+      <Routes>
+        {/* auth routes */}
+        <Route element={<PublicRoute />}>
+          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
         </Route>
-        <Route element={<Layout />}>
-          <Route path="/catalog" element={<CatalogPage />} />
-          <Route path="/plant" element={<PlantTreePage />} />
 
-          <Route path="/profile" element={<ProfileLayout />}>
-            <Route index element={<MyTreesPage />} />
-            <Route path="certificates" element={<MyCertificatesPage />} />
-            <Route path="settings" element={<ProfileSettingsPage />} />
+        {/* guest + user routes */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+        </Route>
+
+        <Route element={<Layout noFooter />}>
+          <Route path="/map" element={<MapPage />} />
+        </Route>
+
+        {/* only authorized routes */}
+        <Route element={<ProtectedRoute />}>
+          <Route element={<AdminRoute />}>
+            <Route path="/admin" element={<AdminPage />} />
+          </Route>
+          <Route element={<Layout />}>
+            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/plant" element={<PlantTreePage />} />
+
+            <Route path="/profile" element={<ProfileLayout />}>
+              <Route index element={<MyTreesPage />} />
+              <Route path="certificates" element={<MyCertificatesPage />} />
+              <Route path="settings" element={<ProfileSettingsPage />} />
+            </Route>
           </Route>
         </Route>
-      </Route>
 
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
+
   )
 }
 

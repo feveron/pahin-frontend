@@ -68,7 +68,7 @@ export function SignUpPage() {
   }
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center md:bg-cream dark:bg-dark py-[80px]">
+    <div className="animate-fade-in flex min-h-screen w-full items-center justify-center md:bg-cream dark:bg-dark py-[80px]">
       <div className="flex rounded-3xl min-h-[850px] w-full dark:bg-dark-input max-w-[1024px] flex-col md:flex-row items-stretch justify-center bg-cream-input">
         <div className="flex-1 md:w-[50%] flex-col flex items-start justify-between">
           <div className="p-12 flex-col gap-6 flex items-start justify-start">
@@ -155,7 +155,7 @@ export function SignUpPage() {
 
             <Button
               label={isLoading ? "Створення..." : "Створити акаунт"}
-              onClick={() => {}}
+              onClick={() => { }}
               variant="delta"
             />
           </form>

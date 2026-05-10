@@ -84,7 +84,7 @@ export function HomePage() {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-col bg-cream dark:bg-dark pt-16 ">
+    <div className="animate-fade-in flex flex-col bg-cream dark:bg-dark pt-16 ">
       {/* ── Hero ── */}
       <section
         className="max-w-7xl mx-auto  relative w-full min-h-[600px] pt-16 md:min-h-[600px] flex items-end md:items-center bg-cover bg-center "

@@ -28,7 +28,7 @@ export default function ProfileSettingsPage() {
   const [passwordSuccess, setPasswordSuccess] = useState(false)
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8 flex flex-col gap-6">
+    <div className="w-full rounded-3xl bg-cream-comment mx-auto px-4 mt-6 py-8 flex flex-col gap-6">
       <h1 className="text-2xl font-bold text-dark-footer dark:text-cream-footer">
         Налаштування профілю
       </h1>

@@ -9,6 +9,7 @@ import { FormCard } from "../components/TreeCards/FormCard"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import type { PlantTreeValues } from "../types/tree"
 import { apiClient } from "../services/apiClient"
+import { useSpecies } from "../hooks/useSpecies"
 
 // Валідація єдина для всієї форми (без кроків)
 const validationSchema = Yup.object({
@@ -22,11 +23,15 @@ export default function PlantTreePage() {
   const navigate = useNavigate()
   const { user } = useCurrentUser()
   const [searchParams] = useSearchParams()
+  const { species } = useSpecies()
   const preselectedId = searchParams.get("speciesId") ?? "" // ← тут, всередині компонента
+  const selectedSpecies = species.find(
+    (s) => s.id === preselectedId
+  )
+
   const handlePlantTree = async (values: PlantTreeValues) => {
     await apiClient.post("/trees", {
       speciesId: values.speciesId,
-
       latitude: values.latitude,
       longitude: values.longitude,
       locationName: values.locationName,
@@ -36,9 +41,9 @@ export default function PlantTreePage() {
   }
   const initialValues: PlantTreeValues = {
     speciesId: preselectedId, // ← тепер preselectedId вже визначений
-    speciesName: "",
-    speciesCategory: "",
-    speciesImage: "",
+    speciesName: selectedSpecies?.name ?? "",
+    speciesCategory: selectedSpecies?.category ?? "",
+    speciesImage: selectedSpecies?.imageUrl ?? "",
     latitude: null,
     longitude: null,
     locationName: "",
@@ -47,6 +52,7 @@ export default function PlantTreePage() {
 
   return (
     <Formik
+      enableReinitialize
       initialValues={initialValues}
       validationSchema={validationSchema}
       validateOnChange={false}

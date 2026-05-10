@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+
   html,
   body,
   #root {
@@ -13,7 +14,7 @@
   }
 
   body {
-    background-color: #f5eedc;
+    background-color: #FEFAE8;
     font-family: "Manrope", sans-serif;
   }
 
@@ -41,6 +42,7 @@
     display: none;
   }
 }
+
 /* src/index.css */
 .mapboxgl-ctrl-attrib {
   font-size: 10px !important;
@@ -48,8 +50,10 @@
 }
 
 .mapboxgl-ctrl-bottom-left {
-  display: none; /* прибирає лого зліва */
+  display: none;
+  /* прибирає лого зліва */
 }
+
 .mapboxgl-popup-content {
   padding: 0 !important;
   border-radius: 1rem !important;
@@ -58,8 +62,10 @@
 }
 
 .mapboxgl-popup-tip {
-  display: none; /* прибирає хвостик */
+  display: none;
+  /* прибирає хвостик */
 }
+
 .overflow-x-auto::-webkit-scrollbar {
   display: none;
 }
