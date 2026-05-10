@@ -12,4 +12,9 @@ export const buttonVariants = {
     "px-4 py-2 w-full font-body font-bold text-[12px] rounded-full text-black/80 bg-cream-input active:dark:bg-green-light active:bg-green active:text-white dark:text-black transition-colors disabled:opacity-50",
 }
 
+export const activeVariants = {
+  filter_beta:
+    "bg-green text-white dark:bg-green-light dark:text-black",
+}
+
 export type Variant = keyof typeof buttonVariants

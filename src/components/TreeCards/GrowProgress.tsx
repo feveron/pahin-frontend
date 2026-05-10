@@ -14,7 +14,17 @@ export function GrowthProgress({ plantedDate }: GrowthProgressProps) {
   const progressPercent = (daysInCurrentLevel / 365) * 100
 
   return (
-    <div className={`w-full `}>
+    <div title={`Дереву ${level} ${level === 1
+      ? "рік"
+      : level >= 2 && level <= 4
+        ? "роки"
+        : "років"
+      } ${daysInCurrentLevel} ${daysInCurrentLevel === 1
+        ? "день"
+        : daysInCurrentLevel >= 2 && daysInCurrentLevel <= 4
+          ? "дні"
+          : "днів"
+      }`} className='w-full'>
       <div className="mb-3 min-w-0 flex items-center justify-between">
         <p className="text-sm font-semibold uppercase text-black dark:text-white">
           Прогрес росту
@@ -31,6 +41,6 @@ export function GrowthProgress({ plantedDate }: GrowthProgressProps) {
           style={{ width: `${progressPercent}%` }}
         />
       </div>
-    </div>
+    </div >
   )
 }

@@ -55,4 +55,10 @@ export interface Species {
   description: string
   suitableFor: string
   imageUrl: string
+  info: {
+    sun: string
+    ground: string
+    distance: string
+    location: string
+  }
 }
