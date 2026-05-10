@@ -22,8 +22,10 @@ export function useTrees(filters: TreeFilters) {
       setLoading(true)
       setError(null)
       try {
-        const res = await apiClient.get<MapTreesResponse>(`/trees?${params.toString()}`)
-        setTrees(res.data ?? []) // ← res.data замість json
+        const res = await apiClient.get<MapTreesResponse>(
+          `/trees?${params.toString()}`
+        )
+        setTrees((res.data ?? []).filter((t) => t.status === "approved")) // ← res.data замість json
         setTotal(res.total ?? res.data?.length ?? 0)
       } catch {
         setError("Не вдалось завантажити дерева")

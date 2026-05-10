@@ -10,6 +10,8 @@ import MapPage from "./pages/MapPage"
 import { SignInPage } from "./pages/SignInPage"
 import { SignUpPage } from "./pages/SignUpPage"
 import PlantTreePage from "./pages/PlantTreePage"
+import { AdminPage } from "./pages/AdminPage"
+import { useCurrentUser } from "./hooks/useCurrentUser"
 
 function App() {
   return (
@@ -31,6 +33,9 @@ function App() {
 
       {/* only authorized routes */}
       <Route element={<ProtectedRoute />}>
+        <Route element={<AdminRoute />}>
+          <Route path="/admin" element={<AdminPage />} />
+        </Route>
         <Route element={<Layout />}>
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/plant" element={<PlantTreePage />} />
@@ -65,6 +70,13 @@ export function ProtectedRoute() {
     return <Navigate to="/sign-in" replace />
   }
 
+  return <Outlet />
+}
+
+export function AdminRoute() {
+  const { user } = useCurrentUser()
+  if (!user) return <Navigate to="/sign-in" replace />
+  if (user.role !== "admin") return <Navigate to="/" replace />
   return <Outlet />
 }
 
