@@ -27,8 +27,8 @@ export function CatalogPage() {
     })
   }, [])
 
-  const handleCardClick = () => {
-    navigate(`/plant`)
+  const handleCardClick = (speciesId: string) => {
+    navigate(`/plant?speciesId=${speciesId}`)
   }
 
   const handleCategoryClick = (category: string) => {
@@ -109,12 +109,12 @@ export function CatalogPage() {
                 subtitle={tree.latinName}
                 description={tree.description}
                 info={{
-                  sun: "Повне",
-                  ground: "Суглинок",
-                  distance: "10м",
-                  location: "Всі регіони",
+                  sun: tree.info.sun,
+                  ground: tree.info.ground,
+                  distance: tree.info.distance,
+                  location: tree.info.location,
                 }}
-                onClick={handleCardClick}
+                onClick={() => handleCardClick(tree.id)}
               />
             ))}
           {isLoadingMore &&
