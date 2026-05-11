@@ -43,7 +43,7 @@ export default function MapPage() {
   }
 
   return (
-    <div className="relative w-full overflow-hidden h-[calc(100vh-64px)] md:h-screen">
+    <div className="animate-fade-in relative w-full overflow-hidden h-[calc(100vh-64px)] md:h-screen">
       {/* Фільтри */}
       <aside
         className={`

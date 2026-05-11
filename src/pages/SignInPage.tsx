@@ -55,7 +55,7 @@ export function SignInPage() {
 
     return (
         <>
-            <div className="flex min-h-screen w-full items-center justify-center bg-cream dark:bg-dark py-[52px] md:px-[52px]">
+            <div className="animate-fade-in flex min-h-screen w-full items-center justify-center bg-cream dark:bg-dark py-[52px] md:px-[52px]">
                 <div className="flex md:h-[680px] dark:bg-neutral-700 max-w-[1200px] flex-col md:flex-row items-center justify-center bg-white rounded-bl-none md:rounded-bl-3xl rounded-3xl shadow-[0_24px_48px_rgba(69,60,30,0.12),0_18px_40px_rgba(69,60,30,0.08)]">
                     <div className="flex-1 md:w-[50%] h-full flex items-start justify-start">
                         <img

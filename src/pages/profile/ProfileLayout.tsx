@@ -22,14 +22,13 @@ export function ProfileLayout() {
   }
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors
-     ${
-       isActive
-         ? "bg-green text-white"
-         : "text-text-info dark:text-gray-400 hover:bg-surface-offset dark:hover:bg-dark"
-     }`
+     ${isActive
+      ? "bg-green text-white"
+      : "text-text-info dark:text-gray-400 hover:bg-surface-offset dark:hover:bg-dark"
+    }`
   const initials = user?.name?.charAt(0).toUpperCase() ?? "?"
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8 pt-16">
+    <div className="min-h-screen max-w-6xl mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8 pt-16">
       {/* Сайдбар */}
       <aside className="lg:w-[220px] shrink-0 pt-6">
         <div className="bg-cream-comment dark:bg-dark-comment rounded-2xl p-4 flex flex-col gap-3">

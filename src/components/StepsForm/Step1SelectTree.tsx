@@ -1,8 +1,8 @@
-import { MiniCard } from "../TreeCards/miniCard"
 import type { FormikProps } from "formik"
 import type { PlantTreeValues, Species } from "../../types/tree"
 import { useSpecies } from "../../hooks/useSpecies" // хук для отримання видів з беку
 import { useEffect, useRef } from "react"
+import { MiniCard } from "../TreeCards/miniCard"
 
 interface Props {
   formik: FormikProps<PlantTreeValues>
@@ -34,14 +34,15 @@ export function Step1TreeSelect({ formik }: Props) {
 
       {/* Сітка карток */}
       <div
-        className="flex gap-4 overflow-x-auto py-2  snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
+        className="flex gap-3 overflow-x-auto py-1  snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
         style={{ scrollbarWidth: "none" }}
       >
         <div className="flex-none w-1 shrink-0" />
         {species.map((s: Species) => (
           <div
             key={s.id}
-            className="flex-none w-[200px] snap-start ref={values.speciesId === s.id ? selectedRef : null}"
+            className="flex-none w-[200px] snap-start p-1"
+            ref={values.speciesId === s.id ? selectedRef : null}
           >
             <MiniCard
               key={s.id}
