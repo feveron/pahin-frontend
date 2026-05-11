@@ -10,6 +10,9 @@ export function useSpecies() {
     apiClient
       .get<Species[]>("/species")
       .then((data) => setSpecies(data))
+      .catch(() => {
+        setSpecies([])
+      })
       .finally(() => setLoading(false))
   }, [])
 
