@@ -2,7 +2,7 @@ import type { FormikProps } from "formik"
 import type { PlantTreeValues, Species } from "../../types/tree"
 import { useSpecies } from "../../hooks/useSpecies" // хук для отримання видів з беку
 import { useEffect, useRef } from "react"
-import { MiniCard } from "../TreeCards/MiniCard"
+import { MiniCard } from "../TreeCards/"
 
 interface Props {
   formik: FormikProps<PlantTreeValues>
