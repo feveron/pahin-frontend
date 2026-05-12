@@ -1,18 +1,28 @@
-# pahin-frontend
-Frontend частина платформи Pahin — застосунок для взаємодії користувачів із системою висадки дерев, перегляду даних та роботи з API.
+# Pahin Frontend
 
-# Live Demo
+Frontend частина платформи **Pahin** — веб-застосунок для волонтерської ініціативи з організації та відстеження посадки дерев в Україні.
 
-https://pahin-frontend.vercel.app/
+Користувач може зареєструватися, переглянути каталог дерев, обрати дерево для посадки, перейти до форми посадки, переглядати карту з деревами та працювати з особистим профілем.
+
+## Live Demo
+
+https://pahin.vercel.app/
+
+## Repository
+
+https://github.com/feveron/pahin-frontend
 
 ## Tech Stack
 
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- Axios — робота з API
-- ESLint + Prettier — контроль якості коду
+- **React** — побудова UI
+- **TypeScript** — типізація даних, props, API-відповідей
+- **Vite** — швидке середовище розробки та build
+- **React Router** — клієнтський роутинг SPA
+- **Tailwind CSS** — стилізація, адаптивність, темна/світла тема
+- **Axios** — HTTP-запити до backend API
+- **ESLint + Prettier** — контроль якості та форматування коду
+- **Vitest / React Testing Library** — unit-тестування frontend-логіки
+- **Vercel** — деплой frontend-частини
 
 ## Prerequisites
 
@@ -54,24 +64,37 @@ App will be available at: `http://localhost:5173`
 | -------------- | -------------------- |
 | `VITE_API_URL` | Backend API base URL |
 
+## Main Features
+
+- Реєстрація користувача
+- Авторизація користувача через JWT
+- Збереження токена та передача його в захищені API-запити
+- Публічна головна сторінка
+- Публічна карта посаджених дерев
+- Каталог дерев
+- Фільтрація та пагінація дерев
+- Сторінка профілю користувача
+- Захищені маршрути для авторизованих користувачів
+- Повторно використовувані UI-компоненти: Button, Input, Card, Icon
+- Підтримка світлої та темної теми
+- Адаптивна верстка
+- Інтеграція з backend REST API
+
 ## Project Structure
 
+```txt
 src/
-├── components/ # UI components
-├── pages/ # Application pages
-├── services/ # API requests
-├── hooks/ # Custom hooks
-├── types/ # TypeScript types
-├── styles/ # Global styles
-├── App.tsx # Root component
-└── main.tsx # Entry point
-
-## Features (planned)
-
-- User authentication (login/register)
-- Users list
-- Integration with backend API
-- Form handling and validation
+├── assets/          # Images, icons, static assets
+├── components/      # Reusable UI components
+├── hooks/           # Custom React hooks
+├── pages/           # Application pages
+├── services/        # API client and domain services
+├── styles/          # Global styles
+├── types/           # TypeScript types
+├── utils/           # Utility functions
+├── App.tsx          # Application routes
+└── main.tsx         # Entry point
+```
 
 ## Scripts
 
